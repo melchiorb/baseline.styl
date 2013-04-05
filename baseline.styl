@@ -1,0 +1,72 @@
+/*
+ * baseline.styl
+ * https://github.com/melchior-b/baseline.styl
+ *
+ * @author Melchior Brislinger
+ * @license MIT
+ *
+ */
+
+// base metrics
+font-size     ?= 14
+line-height   ?= 22
+
+// multipliers
+font-alpha    ?= 3
+font-beta     ?= 2.25
+font-gamma    ?= 1.5
+font-delta    ?= 1.3125
+font-epsilon  ?= 1.125
+font-zeta     ?= 1
+
+// font size
+baseline-fs(factor)
+  ((font-size / 16) * factor)em
+
+// line height
+baseline-lh(factor)
+  result = (line-height / (font-size * factor))em
+  result < 1 ? result * 2 : result
+
+// bottom margin
+baseline-mb(factor)
+  (line-height / (font-size * factor))em
+
+// all font metrics
+baseline(factor)
+  font-size baseline-fs(factor)
+  line-height baseline-lh(factor)
+  margin-bottom baseline-mb(factor)
+
+// default baseline setup
+baseline-default()
+  html
+    font-size 100%
+
+  h1, h2, h3, h4, h5, h6,
+  p, blockquote, dl, ul, ul, li, dt, dd
+    margin 0
+
+  h1, .alpha
+    baseline(font-alpha)
+
+  h2, .beta
+    baseline(font-beta)
+
+  h3, .gamme
+    baseline(font-gamma)
+
+  h4, .delta
+    baseline(font-delta)
+
+  h5, .epsilon
+    baseline(font-epsilon)
+
+  h6, .zeta
+    baseline(font-zeta)
+
+  p, blockquote, pre, dl, ul, ul, dt, dd, hr
+    baseline(font-zeta)
+
+  blockquote *, pre *
+    font-size inherit
